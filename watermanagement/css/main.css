@@ -556,6 +556,9 @@ body {
   padding: 10px 15px;
   border-radius: 8px;
   border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-links a:hover {
@@ -568,6 +571,21 @@ body {
 .footer-links a:focus {
   outline: 2px solid #ff69b4;
   outline-offset: 2px;
+}
+
+.linkedin-link {
+  min-width: 50px;
+  min-height: 50px;
+}
+
+.linkedin-link svg {
+  width: 28px;
+  height: 28px;
+  transition: all 0.3s ease;
+}
+
+.linkedin-link:hover svg {
+  transform: scale(1.1);
 }
 
 /* Responsive Design */
