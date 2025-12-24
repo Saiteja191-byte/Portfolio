@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Manikanta Sai Teja</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            min-height: 100vh;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            margin: 20px 0 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-name:hover {
+            color: #4a90e2;
+            transform: translateY(-1px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-item {
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-item:hover {
+            color: #4a90e2;
+            background: rgba(74, 144, 226, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .nav-item.active {
+            color: #4a90e2;
+            background: rgba(74, 144, 226, 0.2);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-bottom: 40px;
+        }
+
+        /* About Section */
+        .about-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .about-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .about-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 24px;
+            color: #4a90e2;
+            position: relative;
+        }
+
+        .about-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #4a90e2, #357abd);
+            border-radius: 2px;
+        }
+
+        .about-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+
+        .about-description:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .contact-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 32px;
+            color: #4a90e2;
+            position: relative;
+        }
+
+        .contact-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #4a90e2, #357abd);
+            border-radius: 2px;
+        }
+
+        .contact-items {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .email-button {
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            border-radius: 12px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-width: 300px;
+        }
+
+        .email-button:hover {
+            background: linear-gradient(135deg, #4a90e2, #357abd);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+        }
+
+        .email-button:hover .email-link {
+            color: white;
+        }
+
+        .email-link {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .linkedin-link {
+            background: linear-gradient(135deg, #0077b5, #005885);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 16px 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 60px;
+        }
+
+        .linkedin-link:hover {
+            background: linear-gradient(135deg, #4a90e2, #357abd);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+        }
+
+        .resume-link {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border: 2px solid #4a90e2;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            background: rgba(74, 144, 226, 0.1);
+        }
+
+        .resume-link:hover {
+            background: #4a90e2;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+        }
+
+        /* Decorative Elements */
+        .decorative-circle {
+            position: fixed;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(53, 122, 189, 0.1));
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .circle-1 {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            right: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .circle-2 {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 5%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-container {
+                padding: 0 15px;
+            }
+
+            .nav-bar {
+                flex-direction: column;
+                gap: 15px;
+                margin: 15px 0 30px 0;
+                padding: 20px;
+            }
+
+            .nav-name {
+                font-size: 16px;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .nav-item {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-section,
+            .contact-section {
+                padding: 24px;
+            }
+
+            .about-title,
+            .contact-title {
+                font-size: 24px;
+            }
+
+            .about-description {
+                font-size: 14px;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .email-button {
+                min-width: auto;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .linkedin-link {
+                align-self: center;
+                min-width: 80px;
+            }
+
+            .decorative-circle {
+                display: none;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .contact-container {
+                max-width: 1400px;
+            }
+
+            .main-content {
+                gap: 80px;
+            }
+
+            .about-section,
+            .contact-section {
+                padding: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative Elements -->
+    <div class="decorative-circle circle-1"></div>
+    <div class="decorative-circle circle-2"></div>
+
+    <div class="contact-container">
+        <!-- Navigation -->
+        <nav class="nav-bar">
+            <a href="portfolio-landing.html" class="nav-name">Manikanta Sai Teja Gundavarapu</a>
+            <div class="nav-links">
+                <a href="portfolio-landing.html" class="nav-item">My work</a>
+                <a href="https://drive.google.com/file/d/18bFG_ZD9fUqSaCIvIfU49sWdMHBV1His/view?usp=drivesdk" class="nav-item">Resume/CV</a>
+                <span class="nav-item active">Contact</span>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- About Section -->
+            <section class="about-section">
+                <h1 class="about-title">About Me</h1>
+                <div class="about-description">
+                    I'm passionate about UI/UX because I believe good design should guide people effortlessly, not overwhelm them. My background in engineering and IoT helped me approach design with both creativity and practical thinking.
+                </div>
+                <div class="about-description">
+                    I love turning complex ideas into simple interfaces that real users can easily understand and enjoy. Every project teaches me something new about design, communication, and how people interact with technology.
+                </div>
+                <div class="about-description">
+                    My goal is to keep learning, growing, and building products that genuinely improve the user's experience.
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="contact-section">
+                <h2 class="contact-title">Get in touch</h2>
+                <div class="contact-items">
+                    <div class="contact-item">
+                        <a href="mailto:manikantasaiteja316@gmail.com" class="email-button">
+                            <span class="email-link">manikantasaiteja316@gmail.com</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/saiteja191" class="linkedin-link">in</a>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1cK_ewsGbTM9zTA8GTXrr7CvjqYeZYaxA/view?usp=sharing" class="resume-link">Resume-Sai-teja.pdf</a>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
