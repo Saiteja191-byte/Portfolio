@@ -328,7 +328,17 @@ body {
   justify-items: center;
 }
 
-.mobile-grid .mobile-screen {
+.mobile-grid-2x4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+.mobile-grid .mobile-screen, .mobile-grid-2x4 .mobile-screen {
   position: relative;
   width: 200px;
   height: 404px;
@@ -338,7 +348,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.mobile-grid .mobile-screen:hover {
+.mobile-grid .mobile-screen:hover, .mobile-grid-2x4 .mobile-screen:hover {
   transform: scale(1.05);
 }
 
@@ -664,7 +674,14 @@ body {
     gap: 20px;
   }
 
-  .mobile-grid .mobile-screen {
+  .mobile-grid-2x4 {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 15px;
+    max-width: 400px;
+  }
+
+  .mobile-grid .mobile-screen, .mobile-grid-2x4 .mobile-screen {
     width: 150px;
     height: 300px;
     display: block;
