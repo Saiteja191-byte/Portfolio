@@ -182,45 +182,12 @@ body {
   border-radius: 8px;
   transition: all 0.3s ease;
   position: relative;
-  animation: fadeInRight 0.8s ease-out;
-  animation-delay: 0.2s;
-  animation-fill-mode: both;
 }
 
 .nav-item:hover {
   color: #ff69b4;
   background: rgba(255, 105, 180, 0.1);
   transform: translateY(-1px);
-}
-
-.nav-item:nth-child(2) {
-  animation-delay: 0.4s;
-}
-
-.nav-item:nth-child(3) {
-  animation-delay: 0.6s;
-}
-
-.nav-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,105,180,0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.nav-item:hover::before {
-  left: 100%;
-}
-
-.nav-item:hover {
-  color: #ff69b4;
-  background: rgba(255,105,180,0.1);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255,105,180,0.3);
 }
 
 /* Hero Section */
@@ -320,12 +287,33 @@ body {
   color: #333;
   margin-bottom: 20px;
   line-height: 1.1;
-  background: linear-gradient(135deg, #333 0%, #ff69b4 100%);
+  background: linear-gradient(135deg, #333 0%, #ff69b4 50%, #b53dd6 100%);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: fadeInUp 1.2s ease-out;
+  animation: fadeInUp 1.2s ease-out, titleFloat 8s ease-in-out infinite, titleGlow 6s ease-in-out infinite;
   position: relative;
+}
+
+@keyframes titleFloat {
+  0%, 100% { 
+    transform: translateY(0px);
+  }
+  50% { 
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes titleGlow {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 15px rgba(255, 105, 180, 0.2));
+  }
+  50% { 
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 25px rgba(255, 105, 180, 0.4));
+  }
 }
 
 .project-title::after {
@@ -357,8 +345,19 @@ body {
   border-radius: 20px;
   display: inline-block;
   border: 2px solid rgba(255,105,180,0.2);
-  animation: scaleIn 0.8s ease-out 0.5s both;
+  animation: scaleIn 0.8s ease-out 0.5s both, datePulse 8s ease-in-out 3s infinite;
   transition: all 0.3s ease;
+}
+
+@keyframes datePulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.2);
+  }
+  50% { 
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(255, 105, 180, 0.3);
+  }
 }
 
 .project-date:hover {
@@ -373,6 +372,23 @@ body {
   color: #555;
   margin-top: 20px;
   animation: fadeInUp 1s ease-out 0.7s both;
+  position: relative;
+}
+
+.project-description::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #ff69b4;
+  animation: blinkCursor 1s infinite 2s;
+}
+
+@keyframes blinkCursor {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
 .hero-mobile {
@@ -410,7 +426,16 @@ body {
   margin-bottom: 30px;
   position: relative;
   display: inline-block;
-  animation: fadeInUp 0.8s ease-out;
+  animation: fadeInUp 0.8s ease-out, sectionTitleGlow 6s ease-in-out 2s infinite;
+}
+
+@keyframes sectionTitleGlow {
+  0%, 100% { 
+    text-shadow: 0 0 8px rgba(255, 105, 180, 0.2);
+  }
+  50% { 
+    text-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+  }
 }
 
 .section-title::after {
@@ -1041,7 +1066,6 @@ body {
 }
 
 /* Responsive Design */
-/* Responsive Design */
 @media (max-width: 1024px) {
   .nav-header {
     width: calc(100% - 30px);
@@ -1096,49 +1120,6 @@ body {
     padding: 8px 16px;
     white-space: nowrap;
   }
-}
-
-@media (max-width: 480px) {
-  .nav-header {
-    top: 5px;
-    padding: 12px 15px;
-    width: calc(100% - 10px);
-    gap: 12px;
-  }
-  
-  .nav-name {
-    font-size: 15px;
-  }
-  
-  .nav-links {
-    gap: 15px;
-  }
-  
-  .nav-item {
-    font-size: 13px;
-    padding: 6px 12px;
-  }
-}
-
-@media (max-width: 360px) {
-  .nav-header {
-    padding: 10px 12px;
-    gap: 10px;
-  }
-  
-  .nav-name {
-    font-size: 14px;
-  }
-  
-  .nav-links {
-    gap: 12px;
-  }
-  
-  .nav-item {
-    font-size: 12px;
-    padding: 5px 10px;
-  }
-}
   
   .hero-section {
     flex-direction: column;
@@ -1155,11 +1136,17 @@ body {
   .project-title {
     font-size: clamp(32px, 8vw, 48px);
     margin-bottom: 15px;
+    animation: fadeInUp 1.2s ease-out, titleFloat 8s ease-in-out infinite, titleGlow 6s ease-in-out infinite;
   }
   
   .project-date {
     font-size: 16px;
     padding: 8px 16px;
+    animation: scaleIn 0.8s ease-out 0.5s both, datePulse 8s ease-in-out 3s infinite;
+  }
+
+  .project-description::after {
+    display: none;
   }
   
   .main-mobile-screen {
@@ -1217,6 +1204,48 @@ body {
     width: 100%;
     text-align: center;
     max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-header {
+    top: 5px;
+    padding: 12px 15px;
+    width: calc(100% - 10px);
+    gap: 12px;
+  }
+  
+  .nav-name {
+    font-size: 15px;
+  }
+  
+  .nav-links {
+    gap: 15px;
+  }
+  
+  .nav-item {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-header {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  
+  .nav-name {
+    font-size: 14px;
+  }
+  
+  .nav-links {
+    gap: 12px;
+  }
+  
+  .nav-item {
+    font-size: 12px;
+    padding: 5px 10px;
   }
 }
 

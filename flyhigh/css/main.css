@@ -24,7 +24,7 @@ html {
 /* Navigation Header - Matching Design System */
 .nav-header {
   position: fixed;
-  top: 20px;
+  top: 40px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.9);
@@ -282,16 +282,33 @@ html {
   text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
   margin: 0;
   line-height: 1.1;
-  animation: titlePulse 3s ease-in-out infinite;
-  background: linear-gradient(135deg, #ffffff, #e3f2fd);
+  animation: titleFloat 8s ease-in-out infinite, titleGlow 6s ease-in-out infinite;
+  background: linear-gradient(135deg, #ffffff, #e3f2fd, #4a90e2);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  position: relative;
 }
 
-@keyframes titlePulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
+@keyframes titleFloat {
+  0%, 100% { 
+    transform: translateY(0px);
+  }
+  50% { 
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes titleGlow {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 15px rgba(74, 144, 226, 0.2));
+  }
+  50% { 
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 25px rgba(74, 144, 226, 0.4));
+  }
 }
 
 .hero-date {
@@ -307,17 +324,28 @@ html {
   border-radius: 25px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  animation: dateSlideIn 1.5s ease-out 0.5s both;
+  animation: dateSlideIn 1.5s ease-out 0.5s both, datePulse 8s ease-in-out 3s infinite;
 }
 
 @keyframes dateSlideIn {
   from {
     opacity: 0;
-    transform: translateX(-50px);
+    transform: translateX(-30px);
   }
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes datePulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 4px 20px rgba(74, 144, 226, 0.2);
+  }
+  50% { 
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(74, 144, 226, 0.3);
   }
 }
 
@@ -379,6 +407,35 @@ html {
   line-height: 1.7;
   color: #333;
   margin: 0;
+  animation: fadeInUp 1s ease-out 1s both;
+  position: relative;
+}
+
+.hero-description p::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #4a90e2;
+  animation: blinkCursor 1s infinite 2s;
+}
+
+@keyframes blinkCursor {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Mobile Showcase Section */
@@ -440,6 +497,7 @@ html {
   color: #4a90e2;
   margin-bottom: 30px;
   position: relative;
+  animation: sectionTitleFadeIn 0.8s ease-out, sectionTitleGlow 6s ease-in-out 2s infinite;
 }
 
 .section-title::after {
@@ -451,6 +509,38 @@ html {
   height: 4px;
   background: linear-gradient(90deg, #4a90e2, #357abd);
   border-radius: 2px;
+  animation: underlineGrow 1s ease-out 0.5s both;
+}
+
+@keyframes sectionTitleFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sectionTitleGlow {
+  0%, 100% { 
+    text-shadow: 0 0 8px rgba(74, 144, 226, 0.2);
+  }
+  50% { 
+    text-shadow: 0 0 15px rgba(74, 144, 226, 0.4);
+  }
+}
+
+@keyframes underlineGrow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 80px;
+    opacity: 1;
+  }
 }
 
 .subsection-title {
@@ -458,6 +548,39 @@ html {
   font-weight: bold;
   color: #333;
   margin: 30px 0 15px 0;
+  animation: subsectionFadeIn 0.6s ease-out;
+  position: relative;
+}
+
+.subsection-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #4a90e2, #357abd);
+  animation: subsectionUnderline 0.8s ease-out 0.3s both;
+}
+
+@keyframes subsectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subsectionUnderline {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60px;
+  }
 }
 
 .section-text {
@@ -465,10 +588,29 @@ html {
   line-height: 1.8;
   color: #333;
   margin-bottom: 20px;
+  animation: textSlideIn 0.8s ease-out;
+  opacity: 0;
+  animation-fill-mode: both;
 }
+
+.section-text:nth-child(2) { animation-delay: 0.2s; }
+.section-text:nth-child(3) { animation-delay: 0.4s; }
+.section-text:nth-child(4) { animation-delay: 0.6s; }
+.section-text:nth-child(5) { animation-delay: 0.8s; }
 
 .section-text:last-child {
   margin-bottom: 0;
+}
+
+@keyframes textSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Survey Content */
@@ -662,49 +804,6 @@ html {
     padding: 8px 16px;
     white-space: nowrap;
   }
-}
-
-@media (max-width: 480px) {
-  .nav-header {
-    top: 5px;
-    padding: 12px 15px;
-    width: calc(100% - 10px);
-    gap: 12px;
-  }
-  
-  .nav-name {
-    font-size: 15px;
-  }
-  
-  .nav-links {
-    gap: 15px;
-  }
-  
-  .nav-item {
-    font-size: 13px;
-    padding: 6px 12px;
-  }
-}
-
-@media (max-width: 360px) {
-  .nav-header {
-    padding: 10px 12px;
-    gap: 10px;
-  }
-  
-  .nav-name {
-    font-size: 14px;
-  }
-  
-  .nav-links {
-    gap: 12px;
-  }
-  
-  .nav-item {
-    font-size: 12px;
-    padding: 5px 10px;
-  }
-}
 
   .hero-section {
     height: 500px;
@@ -724,10 +823,18 @@ html {
   .hero-title {
     font-size: 48px;
     margin-bottom: 15px;
+    animation: titleFloat 8s ease-in-out infinite, titleGlow 6s ease-in-out infinite;
   }
 
   .hero-date {
     font-size: 18px;
+    position: static;
+    margin-top: 20px;
+    animation: dateSlideIn 1.5s ease-out 0.5s both, datePulse 8s ease-in-out 3s infinite;
+  }
+
+  .hero-description p::after {
+    display: none;
   }
 
   .hero-phone {
@@ -814,6 +921,58 @@ html {
 
   .footer-links {
     justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-header {
+    top: 5px;
+    padding: 12px 15px;
+    width: calc(100% - 10px);
+    gap: 12px;
+  }
+  
+  .nav-name {
+    font-size: 15px;
+  }
+  
+  .nav-links {
+    gap: 15px;
+  }
+  
+  .nav-item {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .hero-phone {
+    width: 150px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-header {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  
+  .nav-name {
+    font-size: 14px;
+  }
+  
+  .nav-links {
+    gap: 12px;
+  }
+  
+  .nav-item {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .hero-phone {
+    width: 130px;
+    height: 260px;
   }
 }
 
