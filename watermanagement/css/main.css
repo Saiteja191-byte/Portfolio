@@ -433,6 +433,63 @@ body {
   51%, 100% { opacity: 0; }
 }
 
+/* Try Design Button */
+.try-design-container {
+  text-align: center;
+  margin: 40px auto;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.try-design-button {
+  display: inline-block;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #0d8899, #197885);
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 25px;
+  box-shadow: 0 8px 25px rgba(13, 136, 153, 0.3);
+  transition: all 0.3s ease;
+  animation: scaleIn 0.8s ease-out 1.2s both;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Readex Pro', sans-serif;
+}
+
+.try-design-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.try-design-button:hover::before {
+  left: 100%;
+}
+
+.try-design-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(13, 136, 153, 0.4);
+  background: linear-gradient(135deg, #0a6b7a, #145e68);
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* Mobile Mockups Section */
 .mobile-mockups-section {
   background: rgba(25,120,133,0.37);
@@ -863,6 +920,11 @@ body {
 
   .hero-description::after {
     display: none;
+  }
+
+  .try-design-button {
+    font-size: 16px;
+    padding: 14px 28px;
   }
   
   .mobile-screen {
