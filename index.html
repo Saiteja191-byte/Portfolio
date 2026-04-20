@@ -934,6 +934,16 @@
     </footer>
 
     <script>
+                // Theme toggle
+        const btn = document.getElementById('themeToggle');
+        if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); btn.textContent = '??'; }
+        btn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            btn.textContent = isLight ? '??' : '??';
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
         // Role text typing animation
         const roleText = document.getElementById('role-text');
         const roles = ['UI/UX Designer', 'UI/UX Developer', 'UX Researcher','Product Designer','Visual Designer','Interaction Designer'];
