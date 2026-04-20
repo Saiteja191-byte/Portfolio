@@ -818,7 +818,7 @@
             <a href="#projects" class="nav-item">My work</a>
             <a href="https://drive.google.com/file/d/1NpeDm72T-Vj5cLKjJ_gEIVXLvlxcW26d/view?usp=sharing" class="nav-item">Resume/CV</a>
             <a href="contact-page.html" class="nav-item">Contact</a>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">??</button>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">&#9790;</button>
         </div>
     </nav>
 
@@ -936,11 +936,11 @@
     <script>
                 // Theme toggle
         const btn = document.getElementById('themeToggle');
-        if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); btn.textContent = '??'; }
+        if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light-mode'); btn.innerHTML = '&#9728;'; }
         btn.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
             const isLight = document.body.classList.contains('light-mode');
-            btn.textContent = isLight ? '??' : '??';
+            btn.innerHTML = isLight ? '&#9728;' : '&#9790;';
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
         });
 
