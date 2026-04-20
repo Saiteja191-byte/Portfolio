@@ -16,11 +16,42 @@
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
             min-height: 100vh;
             color: white;
+            transition: background 0.4s ease, color 0.4s ease;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Smooth scrolling */
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .theme-toggle:hover { background: rgba(74,144,226,0.3); transform: rotate(20deg) scale(1.1); }
+        body.light-mode { background: linear-gradient(135deg, #f0f4f8 0%, #e8edf2 50%, #f0f4f8 100%) !important; color: #1a1a1a !important; }
+        body.light-mode .nav-bar { background: rgba(255,255,255,0.95) !important; border-color: rgba(0,0,0,0.1) !important; }
+        body.light-mode .nav-name, body.light-mode .nav-item { color: #1a1a1a !important; }
+        body.light-mode .theme-toggle { background: rgba(0,0,0,0.08) !important; border-color: rgba(0,0,0,0.15) !important; color: #333 !important; }
+        body.light-mode .hero-title { color: #1a1a1a !important; }
+        body.light-mode .gradient-text { background: linear-gradient(135deg, #1a1a1a, #4a90e2) !important; -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; background-clip: text !important; }
+        body.light-mode .hero-description, body.light-mode .hero-subtitle { color: #333 !important; }
+        body.light-mode .project-item { background: rgba(255,255,255,0.85) !important; border-color: rgba(0,0,0,0.1) !important; }
+        body.light-mode .project-title { color: #1a1a1a !important; }
+        body.light-mode .project-description { color: #444 !important; }
+        body.light-mode .projects-section, body.light-mode .about-section, body.light-mode .contact-section { background: rgba(255,255,255,0.4) !important; }
+        body.light-mode .about-text-content { background: rgba(255,255,255,0.9) !important; }
+        body.light-mode .about-text { color: #333 !important; }
+        body.light-mode .job-seeking-line { color: #2a70c2 !important; }
+        body.light-mode .section-title, body.light-mode .about-title, body.light-mode .contact-title { color: #4a90e2 !important; }
+/* Smooth scrolling */
         html {
             scroll-behavior: smooth;
         }
