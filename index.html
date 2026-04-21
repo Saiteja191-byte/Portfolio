@@ -337,12 +337,52 @@
       const n=Math.floor((canvas.width*canvas.height)/5000);
       for(let i=0;i<n;i++) stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.3+0.2,a:Math.random(),s:Math.random()*0.008+0.003,d:Math.random()>0.5?1:-1});
     }
+    // Shooting stars
+    let shooters = [];
+    function spawnShooter(){
+      shooters.push({
+        x: Math.random()*canvas.width*0.8,
+        y: Math.random()*canvas.height*0.4,
+        len: Math.random()*120+60,
+        speed: Math.random()*8+6,
+        angle: Math.PI/4 + (Math.random()-0.5)*0.3,
+        alpha: 1,
+        width: Math.random()*1.5+0.5
+      });
+    }
+    setInterval(()=>{ if(document.documentElement.getAttribute("data-theme")!=="light") spawnShooter(); }, 2200);
+
     function draw(){
       ctx.clearRect(0,0,canvas.width,canvas.height);
+      // Twinkling stars
       stars.forEach(s=>{
         s.a+=s.s*s.d; if(s.a>=1||s.a<=0) s.d*=-1;
         ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
         ctx.fillStyle=`rgba(255,255,255,${s.a})`; ctx.fill();
+      });
+      // Shooting stars
+      shooters = shooters.filter(s=>s.alpha>0);
+      shooters.forEach(s=>{
+        const tx = s.x + Math.cos(s.angle)*s.len;
+        const ty = s.y + Math.sin(s.angle)*s.len;
+        const grad = ctx.createLinearGradient(s.x,s.y,tx,ty);
+        grad.addColorStop(0,`rgba(255,255,255,0)`);
+        grad.addColorStop(0.3,`rgba(255,255,255,${s.alpha*0.6})`);
+        grad.addColorStop(1,`rgba(255,255,255,${s.alpha})`);
+        ctx.beginPath();
+        ctx.moveTo(s.x,s.y);
+        ctx.lineTo(tx,ty);
+        ctx.strokeStyle=grad;
+        ctx.lineWidth=s.width;
+        ctx.stroke();
+        // Bright head dot
+        ctx.beginPath();
+        ctx.arc(tx,ty,s.width*1.2,0,Math.PI*2);
+        ctx.fillStyle=`rgba(255,255,255,${s.alpha})`;
+        ctx.fill();
+        s.x += Math.cos(s.angle)*s.speed;
+        s.y += Math.sin(s.angle)*s.speed;
+        s.alpha -= 0.018;
       });
       requestAnimationFrame(draw);
     }
