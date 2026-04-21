@@ -103,6 +103,48 @@
     footer{padding:28px 6%;text-align:center;border-top:1px solid var(--border);font-size:0.82rem;color:var(--text3);}
     @media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:48px;}.hero-image-wrap{order:-1;}.hero-img{width:240px;height:240px;}.projects-grid{grid-template-columns:1fr 1fr;}.about-grid{grid-template-columns:1fr;gap:44px;}}
     @media(max-width:640px){.nav-hamburger{display:flex;}.nav-links{display:none;position:fixed;top:66px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);flex-direction:column;padding:16px 6%;gap:4px;}.nav-links.open{display:flex;}.nav-links a{width:100%;padding:12px 16px;}.projects-grid{grid-template-columns:1fr;}.hero-stats{gap:20px;flex-wrap:wrap;}.hero-cta{flex-direction:column;}.btn{justify-content:center;}.skills-grid{grid-template-columns:1fr;}}
+  
+    /* ── ENTRANCE ANIMATIONS ── */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeRight{from{opacity:0;transform:translateX(28px);}to{opacity:1;transform:translateX(0);}}
+    @keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+    @keyframes shimmer{0%{background-position:-200% 0;}100%{background-position:200% 0;}}
+
+    .hero-badge{animation:fadeUp .6s ease both;}
+    .hero-heading{animation:fadeUp .7s .1s ease both;}
+    .hero-subtitle{animation:fadeUp .7s .2s ease both;}
+    .hero-bio{animation:fadeUp .7s .3s ease both;}
+    .hero-cta{animation:fadeUp .7s .4s ease both;}
+    .hero-socials{animation:fadeUp .7s .5s ease both;}
+    .hero-stats{animation:fadeUp .7s .6s ease both;}
+    .hero-image-wrap{animation:fadeRight .9s .2s ease both;}
+    .hero-img{animation:floatY 5s ease-in-out infinite;}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease;}
+    .reveal-left.visible{opacity:1;transform:translateX(0);}
+    .reveal-right{opacity:0;transform:translateX(28px);transition:opacity .65s ease,transform .65s ease;}
+    .reveal-right.visible{opacity:1;transform:translateX(0);}
+
+    .stagger>*{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease;}
+    .stagger.visible>*:nth-child(1){opacity:1;transform:none;transition-delay:.05s;}
+    .stagger.visible>*:nth-child(2){opacity:1;transform:none;transition-delay:.15s;}
+    .stagger.visible>*:nth-child(3){opacity:1;transform:none;transition-delay:.25s;}
+    .stagger.visible>*:nth-child(4){opacity:1;transform:none;transition-delay:.35s;}
+    .stagger.visible>*:nth-child(5){opacity:1;transform:none;transition-delay:.45s;}
+
+    .project-card::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);transform:skewX(-20deg);transition:left .6s ease;}
+    .project-card:hover::after{left:150%;}
+    .project-card{position:relative;overflow:hidden;}
+
+    .skill-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform .3s ease;}
+    .skill-item:hover::before{transform:scaleY(1);}
+    .skill-item{position:relative;overflow:hidden;}
+
+    .stat:hover .stat-num{color:var(--accent);}
+    nav.scrolled{background:rgba(7,7,14,0.97)!important;}
+    [data-theme="light"] nav.scrolled{background:rgba(246,246,252,0.98)!important;}
   </style>
 </head>
 <body>
@@ -157,9 +199,9 @@
 
   <section id="projects">
     <div class="section-inner">
-      <div class="section-label">MY WORK</div>
-      <h2 class="section-heading">Selected Projects</h2>
-      <div class="projects-grid">
+      <div class="section-label reveal">MY WORK</div>
+      <h2 class="section-heading reveal">Selected Projects</h2>
+      <div class="projects-grid stagger">
         <article class="project-card">
           <div class="project-img-wrap"><img src="flyhigh/images/v59_58.png" alt="FlyHike" loading="lazy" /></div>
           <div class="project-body">
@@ -194,8 +236,8 @@
   <section id="about">
     <div class="section-inner">
       <div class="about-grid">
-        <div class="about-text">
-          <div class="section-label">ABOUT ME</div>
+        <div class="about-text reveal-left">
+          <div class="section-label reveal">ABOUT ME</div>
           <h2>Designing with purpose &amp; empathy</h2>
           <p>I'm a CMS (Visual Computing) master's student at TU Dresden with a passion for creating user-centered digital experiences. My background in engineering gives me a unique perspective on solving complex design challenges.</p>
           <p>I believe great design is invisible — it guides users effortlessly without overwhelming them. Every project I take on starts with deep research and ends with a solution that genuinely improves people's lives.</p>
@@ -205,7 +247,7 @@
         </div>
         <div class="about-skills">
           <div class="skills-label">Core Skills</div>
-          <div class="skills-grid">
+          <div class="skills-grid stagger">
             <div class="skill-item"><span class="skill-dot"></span>UX Research</div>
             <div class="skill-item"><span class="skill-dot"></span>UI Design</div>
             <div class="skill-item"><span class="skill-dot"></span>Figma</div>
@@ -222,8 +264,8 @@
 
   <section id="contact">
     <div class="section-inner">
-      <div class="contact-inner">
-        <div class="section-label">GET IN TOUCH</div>
+      <div class="contact-inner reveal">
+        <div class="section-label reveal">GET IN TOUCH</div>
         <h2 class="section-heading">Let's work together</h2>
         <p class="contact-sub">I'm currently open to working student UI/UX roles and related positions. If you have an opportunity or just want to say hi, my inbox is always open.</p>
         <a href="mailto:manikantasaiteja316@gmail.com" class="contact-email">&#9993; manikantasaiteja316@gmail.com</a>
@@ -243,6 +285,17 @@
   <script>
     const html = document.documentElement;
     const toggle = document.getElementById('themeToggle');
+    
+    // Scroll reveal
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
+    }, {threshold: 0.12});
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el => obs.observe(el));
+
+    // Nav scroll effect
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 40);
+    }, {passive: true});
     const saved = localStorage.getItem('theme') || 'dark';
     html.setAttribute('data-theme', saved);
     toggle.innerHTML = saved === 'dark' ? '&#9790;' : '&#9728;';
