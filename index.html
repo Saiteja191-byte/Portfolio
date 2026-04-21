@@ -324,5 +324,32 @@
       a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});
     });
   </script>
+
+  <!-- Stars canvas -->
+  <canvas id="stars" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0;transition:opacity 1s ease;"></canvas>
+  <script>
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    function resize(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+    function initStars(){
+      stars=[];
+      const n=Math.floor((canvas.width*canvas.height)/5000);
+      for(let i=0;i<n;i++) stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.3+0.2,a:Math.random(),s:Math.random()*0.008+0.003,d:Math.random()>0.5?1:-1});
+    }
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      stars.forEach(s=>{
+        s.a+=s.s*s.d; if(s.a>=1||s.a<=0) s.d*=-1;
+        ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+        ctx.fillStyle=`rgba(255,255,255,${s.a})`; ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    function updateVisibility(){ canvas.style.opacity=document.documentElement.getAttribute('data-theme')!=='light'?'1':'0'; }
+    resize(); initStars(); draw(); updateVisibility();
+    window.addEventListener('resize',()=>{resize();initStars();},{passive:true});
+    new MutationObserver(updateVisibility).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  </script>
 </body>
 </html>
