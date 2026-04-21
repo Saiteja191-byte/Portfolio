@@ -1107,17 +1107,51 @@ body {
     padding: 12px 25px;
   }
   
-  .nav-name {
-    font-size: 17px;
+  .nav-name { font-size: 17px; }
+  .nav-links { gap: 25px; }
+  .nav-item { font-size: 15px; padding: 7px 14px; }
+
+  .hero-background-container {
+    height: 350px;
+    margin-top: 80px;
   }
-  
-  .nav-links {
-    gap: 25px;
+
+  .hero-title {
+    font-size: 32px;
+    top: 100px;
+    right: 30px;
+    max-width: 55%;
   }
-  
-  .nav-item {
-    font-size: 15px;
-    padding: 7px 14px;
+
+  .hero-date {
+    font-size: 20px;
+    top: 260px;
+    left: 30px;
+  }
+
+  .main-content { padding: 0 30px; }
+
+  .mobile-grid-2x4 {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .mobile-grid .mobile-screen,
+  .mobile-grid-2x4 .mobile-screen {
+    width: 160px;
+    height: 320px;
+  }
+
+  .survey-findings-grid { grid-template-columns: repeat(3, 1fr); }
+  .affinity-grid { grid-template-columns: repeat(2, 1fr); }
+  .personas-grid { grid-template-columns: repeat(2, 1fr); }
+  .dp-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .diagram-content, .process-content,
+  .additional-process, .repair-process,
+  .analysis-content, .results-content {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 }
 
