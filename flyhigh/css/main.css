@@ -824,6 +824,48 @@ html {
     font-size: 15px;
     padding: 7px 14px;
   }
+
+  .hero-section {
+    height: 550px;
+  }
+
+  .hero-content {
+    padding: 30px;
+  }
+
+  .hero-title {
+    font-size: 64px;
+  }
+
+  .hero-date {
+    font-size: 22px;
+  }
+
+  .hero-phone {
+    width: 200px;
+    height: 400px;
+  }
+
+  .main-content {
+    padding: 0 30px;
+  }
+
+  .showcase-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+
+  .survey-findings-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .affinity-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .personas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -869,42 +911,13 @@ html {
     flex-direction: column;
     text-align: center;
     padding: 20px;
-    gap: 30px;
-  }
-
-  .hero-text {
-    max-width: 100%;
-  }
-
-  .hero-title {
-    font-size: 48px;
-    margin-bottom: 15px;
-    animation: titleFloat 8s ease-in-out infinite, titleGlow 6s ease-in-out infinite;
-  }
-
-  .hero-date {
-    font-size: 18px;
-    position: static;
-    margin-top: 20px;
-    animation: dateSlideIn 1.5s ease-out 0.5s both, datePulse 8s ease-in-out 3s infinite;
-  }
-
-  .hero-description p::after {
-    display: none;
-  }
-
-  .try-design-container {
-    padding: 0 20px;
-  }
-
-  .try-design-button {
-    font-size: 16px;
-    padding: 14px 28px;
+    gap: 20px;
+    justify-content: center;
   }
 
   .hero-phone {
-    width: 180px;
-    height: 360px;
+    width: 150px;
+    height: 300px;
   }
 
   .mobile-mockup {
